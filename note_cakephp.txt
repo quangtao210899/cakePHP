@@ -1,1 +1,9 @@
 -CakePHP running on PHP 7.4 (min PHP 5.6)
+-Tải composer
+-composer self-update (composer create-project --prefer-dist cakephp/app:"^3.10" cms)
+-bin\cake serverc
+
+*Những folder quan trọng:
+-config: database config, routes (cấu hình ở app_local.php)
+-src: model/view/controller
+-webroot: css,js,images
