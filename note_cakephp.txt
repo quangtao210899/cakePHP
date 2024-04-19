@@ -11,10 +11,20 @@
 -set() (controller) để chuyển dữ liệu sang Template 
 -findBySlug (slud là 1 field trong model Acticle): a Dynamic Finder để tìm kiếm dữ liệu
 
+-$controllerName = $this->request->getParam('controller');
+-$parameters = $this->request->getAttribute('params');
+-$this->request->getData()
+    +$this->request->getData('MyModel.attachment'); # file đính kèm
+-$this->request->getQuery('page'); # /posts/index?page=1&sort=title
+    +$this->request->getQueryParams(); #get all query param
+-$this->request->getUploadedFile('MyModel.attachment');
+
 *Cấu hình 
 -Cấu hình hệ thống sẽ được để ở config/app.php và config/app_local.php
 -Biến môi trường để ở file config/.env
 
--Đọc docs CakePHP: CRUD Article, simple Authentication
+
+-Đọc docs CakePHP: CRUD Article, simple Authentication, routing, request, response, middleware
+-Đọc docs FastAPI: pending
 
 -Câu hỏi: Source code dự án sắp tới và sơ đồ , tài liệu hệ thống

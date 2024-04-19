@@ -66,6 +66,7 @@ return [
             'templates' => [APP . 'Template' . DS],
             'locales' => [APP . 'Locale' . DS],
         ],
+        // 'uploadedFilesAsObjects' => true,
     ],
 
     /*
