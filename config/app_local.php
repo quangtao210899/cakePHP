@@ -25,7 +25,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '6c4ea76a3e10f8f6484da93d347d84b52050a87f5b2f24b6171d7af8f4e71b37'),
+        'salt' => env('SECURITY_SALT', '7334bd09e8d7ec15537b957008aeca9c670ff6cf1ee505bc8a6f9645e9374a89'),
     ],
 
     /*
@@ -43,34 +43,11 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-
             'username' => 'my_app',
             'password' => 'secret',
-
             'database' => 'my_app',
-            /*
-             * If not using the default 'public' schema with the PostgreSQL driver
-             * set it here.
-             */
-            //'schema' => 'myapp',
-
-            /*
-             * You can use a DSN string to set the entire configuration
-             */
+            'log' => true,
             'url' => env('DATABASE_URL', null),
-        ],
-
-        /*
-         * The test connection is used during the test suite.
-         */
-        'test' => [
-            'host' => 'localhost',
-            //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
-            'database' => 'test_myapp',
-            //'schema' => 'myapp',
-            'url' => env('DATABASE_TEST_URL', null),
         ],
     ],
 
