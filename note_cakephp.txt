@@ -1,6 +1,6 @@
 -CakePHP running on PHP 7.4 (min PHP 5.6)
 -Tải composer
--composer self-update (composer create-project --prefer-dist cakephp/app:"^3.10" cms)
+-composer self-update (composer create-project --prefer-dist cakephp/app:"3.10.*" cms)
 -bin\cake serverc
 
 *Những folder quan trọng:
@@ -10,3 +10,11 @@
 
 -set() (controller) để chuyển dữ liệu sang Template 
 -findBySlug (slud là 1 field trong model Acticle): a Dynamic Finder để tìm kiếm dữ liệu
+
+*Cấu hình 
+-Cấu hình hệ thống sẽ được để ở config/app.php và config/app_local.php
+-Biến môi trường để ở file config/.env
+
+-Đọc docs CakePHP: CRUD Article, simple Authentication
+
+-Câu hỏi: Source code dự án sắp tới và sơ đồ , tài liệu hệ thống
