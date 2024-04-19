@@ -5,5 +5,8 @@
 
 *Những folder quan trọng:
 -config: database config, routes (cấu hình ở app_local.php)
--src: model/view/controller
+-src: model/view/controller/Template
 -webroot: css,js,images
+
+-set() (controller) để chuyển dữ liệu sang Template 
+-findBySlug (slud là 1 field trong model Acticle): a Dynamic Finder để tìm kiếm dữ liệu
