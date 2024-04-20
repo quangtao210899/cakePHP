@@ -24,7 +24,19 @@
 -Biến môi trường để ở file config/.env
 
 
--Đọc docs CakePHP: CRUD Article, simple Authentication, routing, request, response, middleware
--Đọc docs FastAPI: pending
+*Request flow
+-request được gửi đến cakephp sẽ đi vào Cake/Routing/Router và Cake/Routing/Dispatcher và kết nối đến Config/routes để tìm đúng controller xử  lý
+-request sẽ được đóng gói vào 1 request object 
 
--Câu hỏi: Source code dự án sắp tới và sơ đồ , tài liệu hệ thống
+*controller
+-Mỗi 1 public function trong controller sẽ tương ứng với 1 url ngoaì ứng dụng
+-Sử dụng $this->set() để trả về dữ liệu cho người dùng
+-$this->render(): sẽ được gọi mặc định cuối function để render ra view, có thể chủ động gọi để render ra view (hay sử dụng trong ajax)
+-$this->redirect: để redirect sang 1 trang khác
+-$this->loadModel('Articles'); sử dụng để load 1 model của bảng khác không phải là default của controller
+-Mỗi controller sẽ có 1 initializer mặc định để  khởi tạo dữ liệu, load component liên quan
+-1 vài function có trong controller:
+    +beforeFilter: sẽ được gọi trước mỗi action trong controller (kể cả trường hợp không có action) thường được sử dụng để kiểm tra quyền, session
+    +beforeRender: Được gọi sau action, trước khi render view
+    +afterFilter: được gọi cuối cùng trong controller
+    
