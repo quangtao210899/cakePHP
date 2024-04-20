@@ -102,4 +102,4 @@ $query = $articles->find()
 
 
 -Chạy dự án White Cross trên local và thử thêm 1 page mới
--Đọc docs CakePHP: controller, ORM (30%, đang đọc query builder)
+-Đọc docs CakePHP: controller, ORM (40%, đang đọc table object)

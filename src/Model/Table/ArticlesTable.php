@@ -8,8 +8,6 @@ use Cake\Validation\Validator;
 use Cake\ORM\Query;
 class ArticlesTable extends Table
 {
-
-
     public function beforeSave($event, $entity, $options)
     {
         if ($entity->tag_string) {
