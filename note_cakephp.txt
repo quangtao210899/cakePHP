@@ -39,4 +39,13 @@
     +beforeFilter: sẽ được gọi trước mỗi action trong controller (kể cả trường hợp không có action) thường được sử dụng để kiểm tra quyền, session
     +beforeRender: Được gọi sau action, trước khi render view
     +afterFilter: được gọi cuối cùng trong controller
-    
+-Sẽ có 1 vài compoent có sẵn để  controller có thể load như là:
+    +AuthComponent
+    +Cookie
+    +CSRF
+    +Flash
+    +Security
+    +Pagination
+    +Request handling
+
+
