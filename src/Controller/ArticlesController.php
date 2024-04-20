@@ -4,7 +4,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 class ArticlesController extends AppController
 {
     
@@ -39,6 +39,25 @@ class ArticlesController extends AppController
 
     public function index()
     {
+        $articles = TableRegistry::getTableLocator()->get('Articles');
+        // $query = $articles->find()
+        //     ->select(['id', 'title'])
+        //     ->where(['id !=' => 1])
+        //     ->order(['id'])
+        //     // ->extract('title')
+        //     ->combine('id','title')
+        //     ->toArray();
+        $query = $articles->find();
+        $query->select(['count' => $query->func()->count('*')]);
+        // $query = $query->toList();
+        // dump($query);
+        // foreach($query as $key=>$value){
+        //     debug([$key,$value]);
+        // }
+        foreach($query as $article){
+            debug([$article->id,$article->title, $article->count]);
+        }
+        
         $articles = $this->Paginator->paginate($this->Articles->find());
         $this->set(compact('articles'));
     }

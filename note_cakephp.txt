@@ -48,4 +48,58 @@
     +Pagination
     +Request handling
 
+*Query builder
+-find(): create query from table object
+-select(): Lấy những field trong query set
+    +select(['id', 'name'])
+-order(): sắp xếp
+    +order(["id" => "DESC"])
+-distinct(): loại giá trị trùng lặp
+-where(): Tìm kiếm
+    +where(['id !=' => 1])
+-toList(): convert object to array
+-first(): select single row
+-extract('title'): chỉ lấy dữ liệu title (không dùng chung với toList và toArray được)
+    +sử  dụng chung với find('list') để lấy thêm dữ liệu id
+-combine('id','title): lấy dữ liệu dạng [id=>title]
+    +sử dụng chung với toArray()
+-enableHydration(): result array instead entity
+-map:
+    map(function ($row) {
+        $row->trimmedTitle = trim($row->title);
+        return $row;
+    })
+-limit + page: để limit dữ liệu
 
+-contain: load các dữ liệu từ bảng liên quan và tránh N+1 query
+-matching được sử dụng để lọc kết quả từ bảng liên quan
+-innerJoinWith: join bảng
+
+**CRUD data
+-Insert data:
+    $query->insert(['title', 'body'])->values([
+            'title' => 'First post',
+            'body' => 'Some body text'
+        ])->execute();
+-Update data:
+    $query->update()->set(['published' => true])->where(['id' => $id])->execute();
+-Delete data:
+    $query->delete()->where(['id' => $id])->execute();
+-union data:
+    $inReview = $articles->find()->where(['need_review' => true]);
+    $unpublished = $articles->find()->where(['published' => false]);
+    $unpublished->union($inReview);
+
+-*query chỉ được thực hiện cho đến khi:
+    +foreach, execute(), first(), all(), toList(), toArray()
+-*Advanced condition (truy vấn nâng cao)
+$query = $articles->find()
+    ->where([
+        'author_id' => 3,
+        'OR' => [['view_count' => 2], ['view_count' => 3]],
+    ]); 
+=> SELECT * FROM articles WHERE author_id = 3 AND (view_count = 2 OR view_count = 3)
+
+
+-Chạy dự án White Cross trên local và thử thêm 1 page mới
+-Đọc docs CakePHP: controller, ORM (30%, đang đọc query builder)
