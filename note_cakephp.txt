@@ -35,6 +35,7 @@
 -$this->redirect: để redirect sang 1 trang khác
 -$this->loadModel('Articles'); sử dụng để load 1 model của bảng khác không phải là default của controller
 -Mỗi controller sẽ có 1 initializer mặc định để  khởi tạo dữ liệu, load component liên quan
+
 -1 vài function có trong controller:
     +beforeFilter: sẽ được gọi trước mỗi action trong controller (kể cả trường hợp không có action) thường được sử dụng để kiểm tra quyền, session
     +beforeRender: Được gọi sau action, trước khi render view
@@ -58,12 +59,16 @@
 -where(): Tìm kiếm
     +where(['id !=' => 1])
 -toList(): convert object to array
+-toArray(): convert object to array
+-enableHydration(): result array instead entity
 -first(): select single row
+
+-json_encode: to json (json_encode($id))
+
 -extract('title'): chỉ lấy dữ liệu title (không dùng chung với toList và toArray được)
     +sử  dụng chung với find('list') để lấy thêm dữ liệu id
 -combine('id','title): lấy dữ liệu dạng [id=>title]
     +sử dụng chung với toArray()
--enableHydration(): result array instead entity
 -map:
     map(function ($row) {
         $row->trimmedTitle = trim($row->title);
@@ -92,6 +97,7 @@
 
 -*query chỉ được thực hiện cho đến khi:
     +foreach, execute(), first(), all(), toList(), toArray()
+
 -*Advanced condition (truy vấn nâng cao)
 $query = $articles->find()
     ->where([
