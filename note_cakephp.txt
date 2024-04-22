@@ -155,3 +155,4 @@ $query = $articles->find()
 
 
 -Đọc docs CakePHP: ORM, Using CakePHP, Utility Classes
+-Xem luồng EventsUser của dự án WhiteCross
