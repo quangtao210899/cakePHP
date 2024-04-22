@@ -75,6 +75,7 @@
         return $row;
     })
 -limit + page: để limit dữ liệu
+-isEmpty(): kiểm tra query có ít nhất 1 row hay không
 
 -contain: load các dữ liệu từ bảng liên quan và tránh N+1 query
 -matching được sử dụng để lọc kết quả từ bảng liên quan
@@ -95,7 +96,7 @@
     $unpublished = $articles->find()->where(['published' => false]);
     $unpublished->union($inReview);
 
--*query chỉ được thực hiện cho đến khi:
+-*query chỉ được thực hiện cho đến khi (query lazy):
     +foreach, execute(), first(), all(), toList(), toArray()
 
 -*Advanced condition (truy vấn nâng cao)
@@ -107,5 +108,37 @@ $query = $articles->find()
 => SELECT * FROM articles WHERE author_id = 3 AND (view_count = 2 OR view_count = 3)
 
 
--Chạy dự án White Cross trên local và thử thêm 1 page mới
--Đọc docs CakePHP: controller, ORM (40%, đang đọc Retrieving Data & Results Sets)
+**validate data
+-Trước khi dữ liệu được lưu trong cakephp sẽ có 2 bước:
+    +Validate request (data type, formating) trước khi request được chuyển thành Entity
+    +Validate data (domain, application) trước khi data được lưu
+
+-Before convert Entity:
+    +$article->getErrors(): Check các lỗi 
+    +function validationDefault() ở trong table để  viết các validate cần thiết
+    +Example:
+        $validator->add('password', 'length', ['rule' => ['lengthBetween', 8, 100]]);
+-Before save data: áp dụng khi gọi save() and delete()
+    $rules->add($rules->isUnique(
+        ['username', 'account_id'],
+        'This username & account_id combination has already been used.'
+    ));
+
+**save data
+-link(), unlink: mana to many record
+    $tag1 = $articlesTable->Tags->findByName('cakephp')->first();
+    $tag2 = $articlesTable->Tags->newEntity();
+    $tag2->name = 'awesome';
+    $articlesTable->Tags->link($article, [$tag1, $tag2]);
+-Validate and convert to an Entity object
+    $entity = $articles->newEntity($this->request->getData());
+-beforeMarshal(): sử  dụng để  mofify request trước khi build entity
+
+**Mối quan hệ: hasOne, hasMany, belongsTo, belongsToMany
+-hasOne: Users hasOne Addresses (bảng Adrress có trường user_id)
+    +dependent: = true thì khi xoá user thì address cx bị xoá theo
+-BelongsTo: Ngược lại với hasOne: Address BelongsTo Users (khoá ngoại đặt ở bảng Users)
+-hasMany: Articles hasMany Comments (khoá ngoại đặt ở bảng Comments)
+-BelongsToMany: Aritcles belongsToMany Tags
+
+-Debug: dd, pr, pj, debug, dump
