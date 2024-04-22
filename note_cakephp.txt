@@ -119,10 +119,17 @@ $query = $articles->find()
     +Example:
         $validator->add('password', 'length', ['rule' => ['lengthBetween', 8, 100]]);
 -Before save data: áp dụng khi gọi save() and delete()
-    $rules->add($rules->isUnique(
+    $rules->add($rules->isUnique(   #custom rule
         ['username', 'account_id'],
         'This username & account_id combination has already been used.'
     ));
+
+-requirePresence('file_name','action'): yêu cầu sự hiện diện
+    +action true: bắt buộc field có trong form
+    +action false: không bắt buộc field có trong form
+    +action create: chỉ yêu cầu khi create
+    +action update: chỉ yêu cầu khi update
+-allowEmpty('field_name','action'): String, Array, Date, Time, Datetime, File (notEmpty)
 
 **save data
 -link(), unlink: mana to many record
@@ -142,3 +149,9 @@ $query = $articles->find()
 -BelongsToMany: Aritcles belongsToMany Tags
 
 -Debug: dd, pr, pj, debug, dump
+
+**text class: Cake\Utility\Text
+**View/Helper/filename.php : helper file
+
+
+-Đọc docs CakePHP: ORM, Using CakePHP, Utility Classes

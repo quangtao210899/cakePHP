@@ -57,7 +57,8 @@ class ArticlesController extends AppController
         foreach($query as $article){
             debug([$article->id,$article->title, $article->count]);
         }
-        
+        // $arr = [1,2,2,3];
+        // dump(array_search(1,$arr));
         $articles = $this->Paginator->paginate($this->Articles->find());
         $this->set(compact('articles'));
     }
